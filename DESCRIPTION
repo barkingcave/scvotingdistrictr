@@ -1,0 +1,14 @@
+Package: scvotingdistrictr
+Type: Package
+Title: South Carolina Voting District Maps
+Version: 0.1.0
+Depends: R (>= 3.0.0)
+Author: Tami Crawford <tami.crawford@gmail.com>
+Maintainer: Tami Crawford <tami.crawford@gmail.com>
+Description: More about what it does (maybe more than one line)
+    Use four spaces when indenting paragraphs within the Description.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 5.0.1
+Imports: dplyr
