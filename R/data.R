@@ -4,10 +4,13 @@
 #' Spatial Polygon with South Carolina Voting Districts - Data Frame
 "sf.df"
 
+#' Zipcode regions - Data Frame
+"zip.regions"
+
 #' Charleston Precinct Winners
 #'
 #' @source scvotes.org
-#'
+#'de
 #' A data frame with the winners for each precinct
 "df_charleston_winners"
 

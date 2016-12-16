@@ -8,18 +8,16 @@ VotingDistrictChoropleth = R6Class("VotingDistrictChoropleth",
                         inherit = Choropleth,
                         public = list(
 
-                          # initialize with a Voting District map
-                          initialize = function(user.df)
+                          # initialize with Voting District map
+                          initialize = function(user.df,ggplot_scale = NULL)
                           {
-                            data(sf.df, package="scvotingdistrictr", envir=environment())
-                            #data(sp_carolina, package="scvotingdistrictr", envir=environment())
-                            #sp_carolina@data$id = rownames(sp_carolina@data)
-                            #sp_carolina.points = ggplot2::fortify(sp_carolina, region="id")
-                            #my.sf.df = dplyr::inner_join(sp_carolina.points, sp_carolina@data, by="id")
-                            #warning(paste("COL: ", colnames(my.sf.df)))
-                            #data(my.sf.df, package="scvotingdistrictr", envir=environment())
-                            super$initialize(sf.df, user.df)
 
+                            data(sf.df, package="scvotingdistrictr", envir=environment())
+
+                            super$initialize(sf.df, user.df)
+                            if(!is.null(ggplot_scale)) {
+                              super$ggplot_scale = ggplot_scale
+                            }
                             if (private$has_invalid_regions)
                             {
                               warning("Please see ?votingdistrict.regions for a list of mappable regions")
@@ -39,7 +37,7 @@ VotingDistrictChoropleth = R6Class("VotingDistrictChoropleth",
                               stop("You can only zoom in by one of zip_zoom, county_zoom, state_zoom or msa_zoom")
                             }
 
-                            data(zip.regions, package="choroplethrVotingDistrict", envir=environment())
+                            data(zip.regions, package="scvotingdistrictr", envir=environment())
 
                             # if the zip_zoom field is selected, just do default behavior
                             if (!is.null(zip_zoom)) {
@@ -62,7 +60,7 @@ VotingDistrictChoropleth = R6Class("VotingDistrictChoropleth",
 
                           render_nationwide = function()
                           {
-                            data(zip.regions, package="choroplethrVotingDistrict", envir=environment())
+                            data(zip.regions, package="scvotingdistrictr", envir=environment())
 
                             self$prepare_map()
 
@@ -199,7 +197,12 @@ VotingDistrictChoropleth = R6Class("VotingDistrictChoropleth",
 #' @importFrom ggplot2 ggplot aes geom_polygon scale_fill_brewer ggtitle theme theme_grey element_blank geom_text
 #' @importFrom ggplot2 scale_fill_continuous scale_colour_brewer ggplotGrob annotation_custom
 #' @importFrom scales comma
-zip_choropleth = function(df, title="", legend="", num_colors=7, state_zoom=NULL, county_zoom=NULL, msa_zoom=NULL, zip_zoom=NULL, reference_map=FALSE)
+zip_choropleth = function(df, title="", legend="", num_colors=7, 
+                          state_zoom=NULL, 
+                          county_zoom=NULL, 
+                          msa_zoom=NULL, 
+                          zip_zoom=NULL, 
+                          reference_map=FALSE)
 {
   # nationwide map is special - no borders and insets for AK and HI
   if (is.null(state_zoom) && is.null(county_zoom) && is.null(msa_zoom) && is.null(zip_zoom))
