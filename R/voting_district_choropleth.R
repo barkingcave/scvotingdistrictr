@@ -144,6 +144,13 @@ VotingDistrictChoropleth = R6Class("VotingDistrictChoropleth",
 #' library(choroplethrVotingDistrict)
 #' data(df_pop_zip)
 #'
+#' # Simple Working Example
+#' data(df_charleston_winners)
+#' c <- VotingDistrictChoropleth$new(df_charleston_winners)
+#' c$title = "2016 Charleston Winners"
+#' c$set_num_colors(2)
+#' c$render()
+#'
 #' # zooming on a state
 #' zip_choropleth(df_pop_zip,
 #'                state_zoom = "new york",
