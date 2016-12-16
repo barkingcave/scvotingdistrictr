@@ -1,6 +1,6 @@
 Package: scvotingdistrictr
 Type: Package
-Title: South Carolina Voting District Maps
+Title: Shapefile, Metadata and Visualization functions for South Carolina Voting District Maps
 Version: 0.1.0
 Depends: R (>= 3.0.0)
 Author: Tami Crawford <tami.crawford@gmail.com>
@@ -11,4 +11,14 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 5.0.1
-Imports: dplyr
+Imports: 
+    choroplethr (>= 3.3.0),
+    R6,
+    scales,
+    Hmisc,
+    stringr,
+    ggplot2,
+    dplyr,
+    acs
+Suggests:
+    testthat
